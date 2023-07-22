@@ -30,8 +30,8 @@ class DessertRepository:RepositoryInterface<Dessert> {
     override fun update(entry: Dessert): Dessert {
         return try {
             val dessert = desserts.find { it.id ==entry.id }?.apply {
-                name = entry.name,
-                description = entry.description,
+                name = entry.name
+                description = entry.description
                 imageUrl = entry.imageUrl
             }?:throw Exception("No dessert with that ID exist")
             dessert
