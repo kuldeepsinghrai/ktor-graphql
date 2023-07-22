@@ -50,5 +50,27 @@ fun SchemaBuilder.dessertSchema() {
         }
     }
 
+    mutation("deleteDessert") {
+        resolver { dessertId: String ->
+            try {
+                repository.delete(dessertId)
+            } catch (e: Exception) {
+                null
+            }
+        }
+    }
+
+    mutation("updateDessert") {
+        resolver { dessertId:String,dessertInput: DessertInput ->
+            try {
+                val dessert = Dessert(dessertId,dessertInput.name,dessertInput.description,dessertInput.imageUrl)
+                repository.update(dessert)
+                dessert
+            } catch (e: Exception) {
+                null
+            }
+        }
+    }
+
 
 }
